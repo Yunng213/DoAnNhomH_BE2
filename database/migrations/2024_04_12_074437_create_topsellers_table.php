@@ -13,15 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('usertype')->default('user');
-            $table->rememberToken();
+        Schema::create('topsellers', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('topsale_name');
+            $table->string('topsale_type');
+            $table->integer('topsale_quantity');
+            $table->double('topsale_price');
+            $table->string('topsale_detail',1000);
+            $table->string('topsale_image');
             $table->timestamps();
+
         });
     }
 
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('topsellers');
     }
 };
